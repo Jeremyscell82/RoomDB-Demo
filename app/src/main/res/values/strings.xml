@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RoomDB-Demo</string>
+
+    <string name="participants">Participants: %d</string>
+    <string name="price">Price: %d</string>
+
 </resources>

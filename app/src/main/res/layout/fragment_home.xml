@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:background="@color/background">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/home_centerGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/home_topGuideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".2"/>
+
+    <TextView
+        android:id="@+id/home_type_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/font_style_body"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_topGuideline"
+        tools:text="Type here"
+        android:gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/home_suggestion_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_type_text"
+        style="@style/font_style_header"
+        android:layout_margin="24dp"
+        android:gravity="center_horizontal"
+        tools:text="Make a simple musical instrument"
+        />
+
+    <TextView
+        android:id="@+id/home_participants_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/home_suggestion_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/home_centerGuideline"
+        style="@style/font_style_body"
+        tools:text="Participants"
+        android:layout_marginTop="@dimen/default_margin"/>
+
+    <TextView
+        android:id="@+id/home_price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/home_suggestion_text"
+        app:layout_constraintStart_toEndOf="@id/home_centerGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/font_style_body"
+        tools:text="Price"
+        android:layout_marginTop="@dimen/default_margin"/>
+
+        <TextView
+            android:id="@+id/home_save_button"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="SAVE"
+            style="@style/font_style_clickable"
+            android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:id="@+id/home_loading_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#72000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Creating another suggestion"
+            style="@style/font_style_body"
+            android:layout_marginTop="@dimen/default_margin"/>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
