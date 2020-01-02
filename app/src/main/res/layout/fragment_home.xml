@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +10,7 @@
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/home_centerGuideline"
+        android:id="@+id/home_centerVerGuideline"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -17,20 +18,23 @@
         />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/home_topGuideline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/home_centerHorGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".2"/>
+        app:layout_constraintGuide_percent=".5"
+        />
+
 
     <TextView
         android:id="@+id/home_type_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         style="@style/font_style_body"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_topGuideline"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Type here"
         android:gravity="center_horizontal"
         />
@@ -54,7 +58,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/home_suggestion_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/home_centerGuideline"
+        app:layout_constraintEnd_toStartOf="@id/home_centerVerGuideline"
         style="@style/font_style_body"
         tools:text="Participants"
         android:layout_marginTop="@dimen/default_margin"/>
@@ -64,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/home_suggestion_text"
-        app:layout_constraintStart_toEndOf="@id/home_centerGuideline"
+        app:layout_constraintStart_toEndOf="@id/home_centerVerGuideline"
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/font_style_body"
         tools:text="Price"
@@ -76,36 +80,74 @@
             android:layout_height="60dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_participants_text"
+            app:layout_constraintBottom_toTopOf="@id/home_centerHorGuideline"
             android:text="SAVE"
             style="@style/font_style_clickable"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginTop="24dp"/>
 
-    <LinearLayout
-        android:id="@+id/home_loading_screen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#72000000"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/home_refresh_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/default_margin"
+        app:fabSize="mini"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_refresh"
+        app:tint="@color/primaryTextColor"
+        app:rippleColor="@color/primaryTextColor"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_saved_suggestion_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/home_centerHorGuideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="gone">
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Creating another suggestion"
-            style="@style/font_style_body"
-            android:layout_marginTop="@dimen/default_margin"/>
-    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/home_fab_loading_indicator"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="@id/home_refresh_fab"
+        app:layout_constraintStart_toStartOf="@id/home_refresh_fab"
+        app:layout_constraintEnd_toEndOf="@id/home_refresh_fab"
+        app:layout_constraintBottom_toBottomOf="@id/home_refresh_fab"
+        android:padding="6dp"
+        android:visibility="gone"
+        android:elevation="8dp"/>
+
+
+    <!--    <LinearLayout-->
+<!--        android:id="@+id/home_loading_screen"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="#72000000"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:gravity="center"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ProgressBar-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"/>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Creating another suggestion"-->
+<!--            style="@style/font_style_body"-->
+<!--            android:layout_marginTop="@dimen/default_margin"/>-->
+<!--    </LinearLayout>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

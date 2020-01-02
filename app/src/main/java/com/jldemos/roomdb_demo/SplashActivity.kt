@@ -10,14 +10,14 @@ class SplashActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.plant(Timber.DebugTree())
+        Timber.plant(Timber.DebugTree()) //Initiate logging library
+        //Give the illusion its actually loading something expensive
         Handler().postDelayed({
             launchApp()
-        },1500)
+        },1000)
     }
 
     private fun launchApp() {
-        Timber.d("Launching App ...")
         val mainIntent = Intent(this, MainActivity::class.java)
         mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(mainIntent)

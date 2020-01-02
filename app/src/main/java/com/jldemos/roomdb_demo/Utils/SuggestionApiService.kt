@@ -1,4 +1,4 @@
-package com.jldemos.roomdb_demo
+package com.jldemos.roomdb_demo.Utils
 
 import com.google.gson.annotations.SerializedName
 import io.reactivex.Observable
@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-class BoredApiService {
+class SuggestionApiService {
 
 
     data class BoredResult(
@@ -34,6 +34,7 @@ class BoredApiService {
         @GET("activity/")
         fun pullAnotherSuggestion(): Observable<BoredResult>
 
+        //Not going to be used, but an example of having multiple endpoints
         @GET("activity/type")
         fun pullByType(
             @Query(value = "type") type: String = "recreational"
